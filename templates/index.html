@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            News Now
+        </title>
+    </head>
+    <body>
+        <form method="POST">
+            <input type="text" name = "query" placeholder="Enter the topic" required>
+            <button type="submit">Submit</button> 
+        </form>
+        {% if search %}
+            <h2> News results for "{{search}}":</h2>
+            {% if articles %}
+                {%for article in articles%}
+                <div style="border:1px solid gray; margin:10px; padding:10px;">
+                    <h3>{{article.title}}</h3>
+                    <p>{{article.description}}</p>
+                    <a href="{{article.url}}" target="_blank">Read more</a>
+                    {% if article.urlToImage %}
+                        <img src="{{article.urlToImage}}" alt="Article Image" width="300">
+                    {% endif %}
+                </div>
+                {% endfor %}
+            {%else%}
+                <p>No articles found.</p>
+            {% endif %}
+        {%endif%}
+    </body>
+</html>
